@@ -1,7 +1,8 @@
 import React, { FormEvent, useEffect, useRef, useState } from "react";
+import parseCommand from "../../functions/parseCommand";
+import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { setCommand, clearCommands } from "../../redux";
-import { RootState } from "../../redux/store";
 
 
 const TerminalInput = () => {
@@ -10,27 +11,26 @@ const TerminalInput = () => {
   const commands = useSelector((state: RootState) => state.command.value);
   const [newCommand, setNewCommand] = useState("");
 
-  const focusInput = () => {
+  useEffect(() => {
     inputRef.current?.focus();
-  }
+  }, [])
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (newCommand === "clear") {
+    dispatch(setCommand([...commands, { command: newCommand }]));
+
+    parseCommand(newCommand);
+    if (newCommand === "clear" || newCommand === "cls") {
       dispatch(clearCommands());
-    } else {
-      dispatch(setCommand([...commands, { command: newCommand }]));
     }
+
     setNewCommand("")
   }
-
-  useEffect(() => {
-    focusInput();
-  }, [])
 
   return (
     <div className="flex gap-3 items-center">
       <p>~ $</p>
+
       <form onSubmit={onSubmit}>
         <input
           ref={inputRef}
@@ -38,6 +38,7 @@ const TerminalInput = () => {
           onChange={(e: any) => { setNewCommand(e.target.value) }}
           className="bg-transparent border-none focus:outline-none">
         </input>
+
         <button type="submit" className="hidden"></button>
       </form>
     </div>

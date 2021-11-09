@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import commandReducer from "./slices/commands";
+import directoryReducer from "./slices/directory";
 
 const store = configureStore({
   reducer: {
     command: commandReducer,
+    directory: directoryReducer,
   }
 });
 
