@@ -2,7 +2,7 @@ import React, { FormEvent, useEffect, useRef, useState } from "react";
 import parseCommand from "../../functions/parseCommand";
 import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { setCommand, clearCommands } from "../../redux";
+import { setCommand } from "../../redux";
 
 
 const TerminalInput = () => {
@@ -20,10 +20,6 @@ const TerminalInput = () => {
     dispatch(setCommand([...commands, { command: newCommand }]));
 
     parseCommand(newCommand);
-    if (newCommand === "clear" || newCommand === "cls") {
-      dispatch(clearCommands());
-    }
-
     setNewCommand("")
   }
 

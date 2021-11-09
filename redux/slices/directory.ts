@@ -1,14 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fileInterface, folderInterface } from "../../interfaces/directoryInterfaces";
+import { directoryInterface } from "../../interfaces/directoryInterfaces";
 
 
 interface initialInstance {
-  value: (folderInterface | fileInterface)[]
+  value: directoryInterface
 }
 
 const initialState: initialInstance = {
-  value: [
-  ]
+  value: {
+    "reddit": {
+      type: "file",
+      link: "https://www.reddit.com",
+    },
+    "folder": {
+      "something": {
+        type: "file",
+        link: "https://www.youtube.com",
+      }
+    }
+  }
 }
 
 const directorySlice = createSlice({

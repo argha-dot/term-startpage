@@ -8,7 +8,7 @@ interface initialInstance {
 const initialState: initialInstance = {
   value: [
     {
-      command: "clear",
+      command: "ls",
     },
   ]
 }

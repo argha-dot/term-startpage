@@ -13,7 +13,6 @@ const PreviousCommand = ({command}: Props) => {
 
   useEffect(() => {
     focusInput();
-
   }, [])
 
   return (
