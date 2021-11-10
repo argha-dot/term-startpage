@@ -1,5 +1,5 @@
 import React, { FormEvent, useEffect, useRef, useState } from "react";
-import parseCommand from "../../functions/parseCommand";
+// import parseCommand from "../../functions/parseCommand";
 import { RootState } from "../../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { setCommand } from "../../redux";
@@ -19,7 +19,6 @@ const TerminalInput = () => {
     e.preventDefault();
     dispatch(setCommand([...commands, { command: newCommand }]));
 
-    parseCommand(newCommand);
     setNewCommand("")
   }
 

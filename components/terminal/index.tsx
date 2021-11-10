@@ -11,7 +11,6 @@ const Terminal = () => {
   const [width] = useState(700);
   const [height] = useState(450);
 
-  const directory = useSelector((state: RootState) => state.directory.value);
   const commands = useSelector((state: RootState) => state.command.value);
 
   return (
@@ -27,27 +26,11 @@ const Terminal = () => {
 
       {
         commands.map((command, index) => {
-          if (command.command === "ls") {
-            return (
-              <Fragment key={index}>
-                <PreviousCommand command={command.command} />
-
-                <div className="flex gap-4">
-                  {Object.keys(directory).map((key) => {
-                    return (
-                      <p className={`${directory[key].type ? "text-green-500" : "text-gray-100"}`} key={key}>{key}</p>
-                    )
-                  })}
-                </div>
-              </Fragment>
-            )
-          } else {
-            return (
-              <Fragment key={index}>
-                <PreviousCommand command={command.command} />
-              </Fragment>
-            )
-          }
+          return (
+            <Fragment key={index}>
+              <PreviousCommand command={command.command} />
+            </Fragment>
+          )
         })
       }
       <TerminalInput />

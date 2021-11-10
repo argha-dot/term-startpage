@@ -18,6 +18,10 @@ const parseCommand = (command: string) => {
       returnCode = "0";
       break;
 
+    case "ls":
+      returnCode = "0";
+      break;
+
     case "open":
       if (store.getState().directory.value[args[1]]) {
         if (store.getState().directory.value[args[1]].type === "file") {
@@ -26,15 +30,22 @@ const parseCommand = (command: string) => {
           returnCode = "0"
         } else {
           console.log("it's a folder");
-          returnCode = "-1";
+          returnCode = "403";
         }
       } else {
-        console.log("file not found");
-        returnCode = "404";
+        if (args[1]) {
+          console.log("file not found");
+          returnCode = "405";
+        } else {
+          returnCode = "406";
+        }
       }
 
       break;
+
     default:
+      console.log("invalid command");
+      returnCode = "404"
       break;
   }
 
