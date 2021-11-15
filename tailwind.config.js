@@ -8,6 +8,9 @@ module.exports = {
         'bg-gray': "#3f3f3f",
         'term-gray': "#1f1f1f"
       },
+      boxShadow: {
+        'shadow': "0 12px 12px -12px rgba(0, 0, 0, 0.3)"
+      }
     },
   },
   variants: {

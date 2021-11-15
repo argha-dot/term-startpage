@@ -15,8 +15,8 @@ const Terminal = () => {
 
   return (
     <div
-      className="text-gray-100 bg-term-gray px-6 rounded-md text-base"
-      style={{ width: `${width}px`, height: `${height}px` }}
+      className="text-gray-100 bg-term-gray px-6 rounded-md text-base shadow-shadow"
+      style={{ width: `${width}px`, height: `${height}px`, boxShadow: "5px 5px 16px 0px rgb(0 0 0 / 80%)" }}
       ref={terminalRef}
     >
       <div className="h-10 pt-5 w-full flex gap-2 justify-end">

@@ -1,4 +1,4 @@
-import { clearCommands, store } from "../redux";
+import { clearCommands, setDirectory, store } from "../redux";
 
 const parseCommand = (command: string) => {
 
@@ -41,6 +41,21 @@ const parseCommand = (command: string) => {
         }
       }
 
+      break;
+
+    case "rm":
+      if (args[1]) {
+        if (store.getState().directory.value[args[1]].type === "file") {
+          const _dir = store.getState().directory.value;
+          const {[args[1]]: remove, ...rest} = _dir;
+          console.log(remove, rest);
+          store.dispatch( setDirectory({ ...rest }) ) 
+        } else {
+          returnCode = "503";
+        }
+      } else {
+        returnCode = "506";
+      }
       break;
 
     default:
